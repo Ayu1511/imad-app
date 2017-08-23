@@ -5,20 +5,51 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-
-var articleOne = {
-    title: 'Article One',
-    heading: 'Article one',
-    date: '15 nov 1997',
-    content: `<p>
-                HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
-            </p>
-            <p>
-                HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
-            </p>
-            <p>
-                HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
-            </p>`
+var articles = {
+    'articleOne' : {
+        title: 'Article One',
+        heading: 'Article One',
+        date: '15 nov 2000',
+        content: `<p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>
+                <p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>
+                <p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>`
+    },
+     
+    'articleTwo' : {
+        title: 'Article Two',
+        heading: 'Article two',
+        date: '15 nov 2000',
+        content: `<p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>
+                <p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>
+                <p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>`
+    },
+    
+   'articleThree' : {
+        title: 'Article Three',
+        heading: 'Article Three',
+        date: '15 nov 2017',
+        content: `<p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>
+                <p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>
+                <p>
+                    HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye. HELLO hie bye bye.
+                </p>`
+    }
 };
 
 function createTemplate (data){
@@ -61,20 +92,10 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one', function (req, res) {
-    res.send(createTemplate(articleOne));
+app.get('/:articleName', function (req, res) {
+    var articleName=req.params.articleName;
+    res.send(createTemplate(articles[articleName]));
 });
-
-
-app.get('/article-two', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-
-app.get('/article-three', function (req, res) {
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-});
-
 
 
 app.get('/ui/style.css', function (req, res) {
