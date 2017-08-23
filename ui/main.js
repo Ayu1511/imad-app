@@ -1,14 +1,6 @@
-console.log('Loaded!');
-var ele=document.getElementById('main');
-ele.innerHTML="New value";
-
-var img=document.getElementById('img');
-var marginLeft = 0;
-
-function moveRight(){
-    marginLeft=marginLeft + 1;
-    img.style.marginLeft = marginLeft + 'px';
-}
-img.onclick=function(){
-    var interval = setInterval(moveRight, 100);
+var button = document.getElementById('counter');
+button.onlick = function(){
+    counter=counter=1;
+    var span = document.getElementById('count');
+    span.innerHTML = counter.toString();
 };
